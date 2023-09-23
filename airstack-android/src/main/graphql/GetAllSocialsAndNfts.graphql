@@ -1,0 +1,74 @@
+query GetAllSocialsAndNfts($address: Address!, $identity: Identity!) {
+  Socials(
+    input: {filter: {userAssociatedAddresses: {_eq: $address}}, blockchain: ethereum}
+  ) {
+    Social {
+      blockchain
+      dappName
+      profileName
+      userAssociatedAddresses
+      userId
+      userCreatedAtBlockTimestamp
+      followerCount
+      followingCount
+      profileBio
+      profileImage
+      profileDisplayName
+      tokenNft {
+         contentValue {
+             image {
+             small
+         }
+       }
+      }
+    }
+  }
+  Poaps(
+    input: {filter: {owner: {_eq: $identity}}, blockchain: ALL}
+  ) {
+    Poap {
+      createdAtBlockNumber
+      dappName
+      poapEvent {
+        city
+        country
+        description
+        eventName
+        eventURL
+        contentValue {
+          image {
+            medium
+          }
+        }
+      }
+    }
+  }
+  XMTPs(
+    input: {blockchain: ALL, filter: {owner: {_eq: $identity}}}
+  ) {
+    XMTP {
+      isXMTPEnabled
+    }
+  }
+  TokenBalances(
+    input: {filter: {owner: {_eq: $identity}}, blockchain: ethereum}
+  ) {
+    TokenBalance {
+      token {
+        baseURI
+        name
+      }
+      tokenNfts {
+        metaData {
+          name
+          description
+        }
+        contentValue {
+          image {
+            small
+          }
+        }
+      }
+    }
+  }
+}

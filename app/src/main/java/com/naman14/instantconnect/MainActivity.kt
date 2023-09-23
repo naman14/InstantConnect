@@ -1,6 +1,8 @@
 package com.naman14.instantconnect
 
+import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import android.view.Menu
@@ -9,7 +11,6 @@ import com.naman14.instantconnect.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +19,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        AirStack.getSocialProfile("0x16b1025cD1A83141bf93E47dBC316f34f27f2e76")
+//        val connectedWalletAddress = PreferenceManager.getDefaultSharedPreferences(this).getString("address", "") ?: ""
+//        if (!connectedWalletAddress.equals("")) {
+//            startActivity(Intent(this, ProfileActivity::class.java).apply {
+//                putExtra("address", connectedWalletAddress)
+//            })
+//            finish()
+//            return
+//        }
+
+        startActivity(Intent(this, ProfileActivity::class.java).apply {
+            putExtra("address", "0x16b1025cD1A83141bf93E47dBC316f34f27f2e76")
+        })
+
 
     }
 
