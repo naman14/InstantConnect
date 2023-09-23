@@ -38,20 +38,28 @@
 
 
             <TextView
+                android:id="@+id/tvAlias"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/robotomono_bold"
-                android:text="You"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:text="naman"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:drawableEnd="@drawable/baseline_edit_24"
+                android:drawableStart="@drawable/baseline_person_outline_24"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/black"
+                android:fontFamily="@font/robotomono_semibold"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="4dp"
                 android:textColor="@color/black"
-                android:textSize="28sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_gravity="center"
+                android:id="@+id/tvAddress"
                 android:fontFamily="@font/robotomono_regular"
                 android:text="0x16b1025cD1A83141bf93E47dBC316f34f27f2e76"
                 android:layout_marginBottom="16dp"

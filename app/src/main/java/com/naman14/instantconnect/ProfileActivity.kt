@@ -1,9 +1,12 @@
 package com.naman14.instantconnect
 
+import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.graphics.Color
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.GetAllSocialsAndNftsQuery
@@ -15,6 +18,7 @@ import com.naman14.instantconnect.carousel.CarouselAdapter
 import com.naman14.instantconnect.carousel.CarouselItem
 import com.naman14.instantconnect.carousel.ChipAdapter
 import com.naman14.instantconnect.databinding.ActivityProfileBinding
+import com.naman14.instantconnect.transfer.NearbyUsersActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -22,7 +26,7 @@ import java.security.AccessController.getContext
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ProfileActivity: AppCompatActivity() {
+class ProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfileBinding
 
@@ -32,6 +36,8 @@ class ProfileActivity: AppCompatActivity() {
     private lateinit var nftAdapter: CarouselAdapter
     private lateinit var poapCitiesAdapter: ChipAdapter
 
+    private var isSelf = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,6 +45,32 @@ class ProfileActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         address = intent.getStringExtra("address") ?: ""
+
+        binding.tvAddress.text = address
+
+        binding.fab.setOnClickListener {
+            startActivity(Intent(this, NearbyUsersActivity::class.java))
+        }
+        isSelf = address == PreferenceManager.getDefaultSharedPreferences(this)
+            .getString("address", "") ?: ""
+
+        if (isSelf) {
+            binding.tvAlias.isVisible = true
+            binding.tvAlias.setOnClickListener {
+                EditAliasDialog { alias ->
+                    binding.tvAlias.text = alias
+                }.show(supportFragmentManager, "EditAliasDialog")
+            }
+        } else {
+            binding.tvAlias.isVisible = false
+        }
+
+
+        binding.tvAlias.setOnClickListener {
+            EditAliasDialog { alias ->
+                binding.tvAlias.text = alias
+            }.show(supportFragmentManager, "EditAliasDialog")
+        }
 
         val poapRecyclerView: RecyclerView = binding.poapRecyclerView
         val multiBrowseCenteredCarouselLayoutManager = CarouselLayoutManager(HeroCarouselStrategy())
@@ -96,7 +128,8 @@ class ProfileActivity: AppCompatActivity() {
     private fun showData(data: GetAllSocialsAndNftsQuery.Data) {
         if (data.Socials!!.Social!!.isNotEmpty()) {
             val lensSocial = data.Socials!!.Social!!.find { it.dappName!!.toString() == "lens" }
-            val farcasterSocial = data.Socials!!.Social!!.find { it.dappName!!.toString() == "farcaster" }
+            val farcasterSocial =
+                data.Socials!!.Social!!.find { it.dappName!!.toString() == "farcaster" }
             if (lensSocial != null) {
                 binding.lensProfileTitle.text = lensSocial.profileName
                 binding.lensProfileSubtitle.text = lensSocial.profileBio
@@ -112,9 +145,16 @@ class ProfileActivity: AppCompatActivity() {
                 val cal = Calendar.getInstance()
                 cal.timeInMillis = date!!.time
 
-                binding.lensProfileSubtitle.text = "Joined ${cal.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale.getDefault())} ${cal.get(Calendar.YEAR)}"
+                binding.lensProfileSubtitle.text = "Joined ${
+                    cal.getDisplayName(
+                        Calendar.MONTH,
+                        Calendar.LONG_FORMAT,
+                        Locale.getDefault()
+                    )
+                } ${cal.get(Calendar.YEAR)}"
 
-                binding.lensProfileSubtitle2.text = "${lensSocial!!.followerCount} followers • ${lensSocial!!.followingCount} following"
+                binding.lensProfileSubtitle2.text =
+                    "${lensSocial!!.followerCount} followers • ${lensSocial!!.followingCount} following"
             }
 
             if (farcasterSocial != null) {
@@ -133,9 +173,16 @@ class ProfileActivity: AppCompatActivity() {
                 val cal = Calendar.getInstance()
                 cal.timeInMillis = date!!.time
 
-                binding.fcProfileSubtitle.text = "Joined ${cal.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale.getDefault())} ${cal.get(Calendar.YEAR)}"
+                binding.fcProfileSubtitle.text = "Joined ${
+                    cal.getDisplayName(
+                        Calendar.MONTH,
+                        Calendar.LONG_FORMAT,
+                        Locale.getDefault()
+                    )
+                } ${cal.get(Calendar.YEAR)}"
 
-                binding.fcProfileSubtitle2.text = "${farcasterSocial!!.followerCount} followers • ${farcasterSocial!!.followingCount} following"
+                binding.fcProfileSubtitle2.text =
+                    "${farcasterSocial!!.followerCount} followers • ${farcasterSocial!!.followingCount} following"
             }
         }
 
@@ -147,14 +194,19 @@ class ProfileActivity: AppCompatActivity() {
 
         if (data.Poaps != null && data.Poaps!!.Poap != null) {
             val poaps = data.Poaps!!.Poap!!
-            poapAdapter.submitList(poaps.filter { it.poapEvent != null && it.poapEvent!!.contentValue != null && it.poapEvent!!.contentValue!!.image != null}.map {
-                    CarouselItem(it.poapEvent!!.contentValue!!.image!!.medium, it.poapEvent!!.eventName)
-            })
+            poapAdapter.submitList(poaps.filter { it.poapEvent != null && it.poapEvent!!.contentValue != null && it.poapEvent!!.contentValue!!.image != null }
+                .map {
+                    CarouselItem(
+                        it.poapEvent!!.contentValue!!.image!!.medium,
+                        it.poapEvent!!.eventName
+                    )
+                })
 
             binding.tvPoaps.text = "POAPs(${poaps.size})"
 
             val events = poaps.distinctBy { it.poapEvent!!.eventName }
-            val cities = poaps.distinctBy { it.poapEvent!!.city }.filter { it.poapEvent!!.city!!.isNotEmpty() }
+            val cities = poaps.distinctBy { it.poapEvent!!.city }
+                .filter { it.poapEvent!!.city!!.isNotEmpty() }
 
             val numCities = cities.size
             val numEvents = events.size
@@ -168,9 +220,13 @@ class ProfileActivity: AppCompatActivity() {
 
         if (data.TokenBalances != null && data.TokenBalances!!.TokenBalance != null) {
             val nfts = data.TokenBalances!!.TokenBalance
-            nftAdapter.submitList(nfts!!.filter { it.tokenNfts != null && it.tokenNfts!!.contentValue != null && it.tokenNfts!!.contentValue!!.image != null}.map {
-                CarouselItem(it.tokenNfts!!.contentValue!!.image!!.small, it.tokenNfts!!.metaData!!.name)
-            })
+            nftAdapter.submitList(nfts!!.filter { it.tokenNfts != null && it.tokenNfts!!.contentValue != null && it.tokenNfts!!.contentValue!!.image != null }
+                .map {
+                    CarouselItem(
+                        it.tokenNfts!!.contentValue!!.image!!.small,
+                        it.tokenNfts!!.metaData!!.name
+                    )
+                })
 
             binding.tvNfts.text = "NFTs(${nfts.size})"
         }

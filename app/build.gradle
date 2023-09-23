@@ -88,5 +88,10 @@ dependencies {
     implementation("io.coil-kt:coil-svg:2.4.0")
     implementation("io.coil-kt:coil-gif:2.4.0")
 
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'io.reactivex:rxjava:1.2.1'
+
+    implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
+
 
 }

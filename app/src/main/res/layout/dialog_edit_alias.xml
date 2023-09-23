@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:layout_marginHorizontal="16dp"
+    android:padding="24dp"
+    android:background="#AAF8B8">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/robotomono_semibold"
+        android:text="Edit your alias"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter alias "
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:fontFamily="@font/robotomono_semibold"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Alias"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/robotomono_bold"
+        android:textColor="@color/black"
+        android:id="@+id/etAmount"/>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/robotomono_bold"
+        android:backgroundTint="#000000"
+        android:textSize="18sp"
+        android:text="Confirm" />
+
+</LinearLayout>
