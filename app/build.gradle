@@ -78,6 +78,8 @@ dependencies {
     implementation("com.walletconnect:android-core")
     implementation("com.walletconnect:walletconnect-modal")
 
+    implementation project(path: ':airstack-android')
+
 //    implementation 'com.github.komputing:kethereum:0.86.0'
 
 //    implementation("com.github.komputing.kethereum:bip39:0.8")

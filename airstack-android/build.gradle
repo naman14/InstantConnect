@@ -1,6 +1,7 @@
 plugins {
-    id 'com.android.application'
+    id "com.android.library"
     id 'org.jetbrains.kotlin.android'
+    id("com.apollographql.apollo3") version "4.0.0-alpha.3"
 }
 
 android {
@@ -8,7 +9,6 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.naman14.airstackandroid"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -30,6 +30,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    apollo {
+        service("service") {
+            packageName.set("com.example")
+        }
+    }
 }
 
 dependencies {
@@ -40,4 +45,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation("com.apollographql.apollo3:apollo-runtime:4.0.0-alpha.3")
 }

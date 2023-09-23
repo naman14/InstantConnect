@@ -1,0 +1,70 @@
+query SocialQuery($id: Identity!) {
+  Ethereum: TokenBalances(
+    input: {filter: {owner: {_eq: $id}}, blockchain: ethereum, limit: 50}
+  ) {
+    TokenBalance {
+      owner {
+        identity
+        socials(input: {filter: {dappName: {_in: [lens, farcaster]}}}) {
+          dappName
+          profileName
+        }
+        xmtp {
+          isXMTPEnabled
+        }
+        poaps(input: {blockchain: ALL}) {
+          eventId
+          tokenId
+        }
+      }
+      tokenAddress
+      tokenId
+      tokenType
+      tokenNfts {
+        contentValue {
+          image {
+            small
+          }
+        }
+      }
+    }
+    pageInfo {
+      nextCursor
+      prevCursor
+    }
+  }
+  Polygon: TokenBalances(
+    input: {filter: {owner: {_eq: $id}}, blockchain: polygon, limit: 50}
+  ) {
+    TokenBalance {
+      owner {
+        identity
+        socials(input: {filter: {dappName: {_in: [lens, farcaster]}}}) {
+          dappName
+          profileName
+        }
+        xmtp {
+          isXMTPEnabled
+        }
+        poaps(input: {blockchain: ALL}) {
+          eventId
+          tokenId
+        }
+      }
+      tokenAddress
+      tokenId
+      tokenType
+      tokenNfts {
+        contentValue {
+          image {
+            small
+          }
+        }
+      }
+    }
+    pageInfo {
+      nextCursor
+      prevCursor
+    }
+  }
+}
