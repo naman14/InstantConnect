@@ -33,6 +33,23 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    configurations.all { c ->
+        c.resolutionStrategy.dependencySubstitution {
+//            substitute module('org.bouncycastle:bcprov-jdk15to18:1.68') using module('org.bouncycastle:bcprov-jdk15on:1.65')
+//            substitute module('com.google.protobuf:protobuf-java:3.6.1') using module('com.google.protobuf:protobuf-javalite:3.21.1')
+//            substitute module('net.jcip:jcip-annotations:1.0') using module('com.github.stephenc.jcip:jcip-annotations:1.0-1')
+
+//            substitute module('com.github.WalletConnect.Scarlet:lifecycle-android:1.0.0') using module('com.tinder.scarlet:lifecycle-android:0.1.12')
+//            substitute module('com.tinder.scarlet:scarlet:0.1.12') using module('com.github.WalletConnect.Scarlet:scarlet:1.0.0')
+//            substitute module('com.tinder.scarlet:websocket-okhttp:0.1.12') using module('com.github.WalletConnect.Scarlet:websocket-okhttp:1.0.0')
+//            substitute module('com.tinder.scarlet:stream-adapter-rxjava2:0.1.12') using module('com.github.WalletConnect.Scarlet:stream-adapter-rxjava2:1.0.0')
+//            substitute module('com.tinder.scarlet:message-adapter-gson:0.1.12') using module('com.github.WalletConnect.Scarlet:message-adapter-gson:1.0.0')
+//            substitute module('com.tinder.scarlet:lifecycle-android:0.1.12') using module('com.github.WalletConnect.Scarlet:lifecycle-android:1.0.0')
+//            substitute module('com.github.WalletConnect.Scarlet:scarlet:1.0.0.') using module('com.github.WalletConnect.Scarlet:scarlet:1.0.0')
+        }
+    }
+
 }
 
 dependencies {
@@ -46,4 +63,23 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_ext_version"
+
+    implementation 'androidx.lifecycle:lifecycle-process:2.3.1'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_ext_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_ext_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_ext_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_ext_version"
+
+//    implementation 'com.tinder.scarlet:scarlet:0.1.12'
+
+    implementation(platform("com.walletconnect:android-bom:1.17.0"))
+    implementation("com.walletconnect:android-core")
+    implementation("com.walletconnect:walletconnect-modal")
+
+//    implementation 'com.github.komputing:kethereum:0.86.0'
+
+//    implementation("com.github.komputing.kethereum:bip39:0.8")
+
 }
