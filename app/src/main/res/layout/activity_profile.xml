@@ -39,8 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Search Address, ENS or Lens profile"
-                    app:layout_anchor="@id/search_bar">
-                </com.google.android.material.search.SearchView>
+                    app:layout_anchor="@id/search_bar"></com.google.android.material.search.SearchView>
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -231,6 +230,18 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
+                    <TextView
+                        android:id="@+id/xmtp_message_sent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/robotomono_regular"
+                        android:gravity="center_horizontal"
+                        android:textSize="14sp"
+                        android:visibility="gone"
+                        tools:text="Congrats on sending your introductory message!" />
+
                 </LinearLayout>
 
 
@@ -314,10 +325,10 @@
                         android:fontFamily="@font/robotomono_bold"
                         android:paddingVertical="8dp"
                         android:stateListAnimator="@null"
-                        android:visibility="gone"
                         android:text="Follow on Lens"
                         android:textColor="@color/black"
                         android:textSize="18sp"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -458,6 +469,18 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/xmtp_message_sent_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/robotomono_regular"
+                        android:gravity="center_horizontal"
+                        android:textSize="14sp"
+                        android:visibility="gone"
+                        tools:text="Congrats on sending your introductory message!" />
 
                 </LinearLayout>
 

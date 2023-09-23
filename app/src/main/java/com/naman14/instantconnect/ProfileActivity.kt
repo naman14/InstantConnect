@@ -20,6 +20,7 @@ import com.naman14.instantconnect.carousel.CarouselItem
 import com.naman14.instantconnect.carousel.ChipAdapter
 import com.naman14.instantconnect.databinding.ActivityProfileBinding
 import com.naman14.instantconnect.transfer.NearbyUsersActivity
+import com.naman14.instantconnect.xmtp.MessageManager
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -235,6 +236,19 @@ class ProfileActivity : AppCompatActivity() {
             binding.ivXmtp.setBackgroundColor(android.graphics.Color.parseColor("#AAF8B8"))
             binding.tvXmtp.text = "XMTP enabled"
             binding.btnChat.isVisible = true
+            binding.btnChat.setOnClickListener {
+                SendMessageDialog { message ->
+                    binding.xmtpMessageSent2.isVisible = true
+                    binding.xmtpMessageSent2.text = "Sending message..."
+                    MessageManager.sendMessage(message, address, {
+                        if (it) {
+                            binding.xmtpMessageSent2.text = "Congrats on sending your introductory message!"
+                        } else {
+                            binding.xmtpMessageSent2.text = "Error sending message"
+                        }
+                    })
+                }.show(supportFragmentManager, "SendMessage")
+            }
         }
 
         if (isSelf) {
@@ -322,7 +336,16 @@ class ProfileActivity : AppCompatActivity() {
         binding.tvInsight3Subtitle.text = "based on your common interests"
 
         binding.btnChatXmtp.setOnClickListener {
-
+            SendMessageDialog { message ->
+                binding.xmtpMessageSent.isVisible = true
+                MessageManager.sendMessage(message, address, {
+                    if (it) {
+                        binding.xmtpMessageSent.text = "Congrats on sending your introductory message!"
+                    } else {
+                        binding.xmtpMessageSent.text = "Error sending message"
+                    }
+                })
+            }.show(supportFragmentManager, "SendMessage")
         }
 
         if ( otherData.Socials != null && otherData.Socials!!.Social != null ) {

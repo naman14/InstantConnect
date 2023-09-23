@@ -50,6 +50,13 @@ android {
         }
     }
 
+    configurations {
+        all {
+            exclude group: "com.google.crypto.tink",
+                    module: "tink"
+        }
+    }
+
 }
 
 dependencies {
@@ -93,7 +100,7 @@ dependencies {
 
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
 
-//    implementation 'org.xmtp:android:0.0.5'
+    implementation 'org.xmtp:android:0.0.5'
 
 
 }
