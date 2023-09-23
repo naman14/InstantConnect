@@ -59,12 +59,27 @@ open class BaseTransferActivity: AppCompatActivity() {
     send payload to nearby devices
      */
     public fun send(payload: String) {
+
         Log.d("Transfer", "Send: " + payload)
         if (transmitter == null) {
             setupTransmitter()
         }
+
         try {
-            transmitter?.send(payload.toByteArray())
+
+            if (payload.length > 15) {
+                val chunked = payload.chunked(15)
+                chunked.forEach {
+                    var pendingMarker = "-"
+                    if (chunked.last() == it) {
+                        pendingMarker = ""
+                    }
+                    Log.d("Transfer", "send: " + (it + pendingMarker))
+                    transmitter?.send((it + pendingMarker).toByteArray())
+                }
+            } else {
+                transmitter?.send(payload.toByteArray())
+            }
         } catch (e: IOException) {
             e.printStackTrace()
             Toast.makeText(this, "Send failed. Try again", Toast.LENGTH_SHORT).show()

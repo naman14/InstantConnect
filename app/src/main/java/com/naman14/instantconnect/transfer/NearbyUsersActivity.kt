@@ -60,10 +60,33 @@ class NearbyUsersActivity : BaseTransferActivity() {
 
     private var foundAddresses = arrayListOf<String>()
 
+    private var pending = false
+    private var pendingMessage = ""
+    private var completed = false
+
     override fun handleMessageReceived(message: String) {
         Log.d("Transfer", "received message: " + message)
-        if (message.startsWith("a")) {
-            var address = message.split(":")[1]
+        if (completed) {
+            Log.d("Sound", "completed")
+            return
+        }
+        if (message.endsWith("-")) {
+            pending = true
+            pendingMessage = pendingMessage + message
+            Log.d("Sound", "partial message:${message}, waiting for full message, new pending message:  ${pendingMessage}")
+            return
+            // partial message, wait for full
+        } else {
+            if (pending) {
+                pending = false
+                pendingMessage = pendingMessage.replace("-", "") + message
+                Log.d("Sound", "got full message:${pendingMessage}")
+                completed = true
+            }
+        }
+
+        if (pendingMessage.startsWith("a")) {
+            var address = pendingMessage.split(":")[1]
             Log.d("Transfer", "found user nearby: " + address)
 
             if (!foundAddresses.contains(address)) {
@@ -73,22 +96,22 @@ class NearbyUsersActivity : BaseTransferActivity() {
             // showing only max 3 nearby users
             foundAddresses.take(3).forEachIndexed { index, s ->
                 if (index == 0) {
-                    binding.user1.text = address
-                    binding.user1.setOnClickListener {
+                    binding.user1.text = address.substring(0, 10)
+                    binding.user1container.setOnClickListener {
                         startActivity(Intent(this, ProfileActivity::class.java).apply {
                             putExtra("address", address)
                         })
                     }
                 } else if (index == 1) {
-                    binding.user2.text = address
-                    binding.user2.setOnClickListener {
+                    binding.user2.text = address.substring(0, 10)
+                    binding.user2container.setOnClickListener {
                         startActivity(Intent(this, ProfileActivity::class.java).apply {
                             putExtra("address", address)
                         })
                     }
                 } else if (index == 2) {
-                    binding.user3.text = address
-                    binding.user3.setOnClickListener {
+                    binding.user3.text = address.substring(0, 10)
+                    binding.user3container.setOnClickListener {
                         startActivity(Intent(this, ProfileActivity::class.java).apply {
                             putExtra("address", address)
                         })

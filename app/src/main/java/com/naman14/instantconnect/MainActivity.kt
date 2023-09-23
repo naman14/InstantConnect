@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putString("address", "0x16b1025cD1A83141bf93E47dBC316f34f27f2e76").apply()
+
 //        val connectedWalletAddress = PreferenceManager.getDefaultSharedPreferences(this).getString("address", "") ?: ""
 //        if (!connectedWalletAddress.equals("")) {
 //            startActivity(Intent(this, ProfileActivity::class.java).apply {
