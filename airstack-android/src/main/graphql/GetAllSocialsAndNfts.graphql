@@ -51,7 +51,7 @@ query GetAllSocialsAndNfts($address: Address!, $identity: Identity!) {
     }
   }
   TokenBalances(
-    input: {filter: {owner: {_eq: $identity}}, blockchain: ethereum}
+    input: {filter: {owner: {_eq: $identity}}, blockchain: ethereum, limit: 10}
   ) {
     TokenBalance {
       token {

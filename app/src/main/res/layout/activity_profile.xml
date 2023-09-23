@@ -1,47 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.search.SearchBar
-            android:id="@+id/cat_search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:hint="Search Address, ENS or Lens profile" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="150dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
             android:orientation="vertical">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.search.SearchBar
+                    android:id="@+id/cat_search_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:hint="Search Address, ENS or Lens profile" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
                 android:fontFamily="@font/robotomono_bold"
-                android:text="Social Profiles"
+                android:text="You"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="28sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/robotomono_regular"
+                android:text="0x16b1025cD1A83141bf93E47dBC316f34f27f2e76"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -72,16 +88,29 @@
 
                             <TextView
                                 android:id="@+id/lens_profile_title"
-                                style="?attr/textAppearanceHeadline5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/robotomono_bold" />
+                                android:fontFamily="@font/robotomono_bold"
+                                android:textColor="@color/black"
+                                android:layout_marginRight="16dp"
+                                android:textSize="26sp"
+                                tools:text="namand.lens" />
 
                             <TextView
                                 android:id="@+id/lens_profile_subtitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
+                                android:layout_marginTop="12dp"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/robotomono_medium"
+                                android:maxLines="2"
+                                android:text="Joined on Aug 2019" />
+
+                            <TextView
+                                android:id="@+id/lens_profile_subtitle2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
                                 android:ellipsize="end"
                                 android:fontFamily="@font/robotomono_medium"
                                 android:maxLines="2"
@@ -90,104 +119,287 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/lens_profile_image"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_vertical"
                             android:layout_marginLeft="8dp"
-                            android:background="@android:color/transparent"
-                            app:backgroundTint="@color/material_on_surface_emphasis_medium"
                             app:backgroundTintMode="add" />
                     </LinearLayout>
-
-                    <!--                <LinearLayout-->
-                    <!--                    android:layout_width="wrap_content"-->
-                    <!--                    android:layout_height="wrap_content"-->
-                    <!--                    android:padding="@dimen/cat_card_single_spacing"-->
-                    <!--                    android:orientation="horizontal"-->
-                    <!--                    android:paddingHorizontal="@dimen/cat_card_single_spacing">-->
-
-                    <!--                    <com.google.android.material.button.MaterialButton-->
-                    <!--                        style="?attr/borderlessButtonStyle"-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:layout_marginEnd="@dimen/cat_card_single_spacing"-->
-                    <!--                        android:layout_marginRight="@dimen/cat_card_single_spacing"-->
-                    <!--                        android:text="@string/cat_card_rich_media_action_1"/>-->
-
-                    <!--                    <com.google.android.material.button.MaterialButton-->
-                    <!--                        style="?attr/borderlessButtonStyle"-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:layout_marginEnd="@dimen/cat_card_single_spacing"-->
-                    <!--                        android:layout_marginRight="@dimen/cat_card_single_spacing"-->
-                    <!--                        android:text="@string/cat_card_rich_media_action_2"/>-->
-
-                    <!--                </LinearLayout>-->
 
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/robotomono_bold"
-                android:text="POAPs"
-                android:textColor="@color/black"
-                android:textSize="28sp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/poap_recycler_view"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="196dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="16dp"
-                android:clipChildren="false"
-                android:clipToPadding="false" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/robotomono_bold"
-                android:text="NFTs"
-                android:textColor="@color/black"
-                android:textSize="28sp" />
+                android:layout_margin="@dimen/mtrl_card_spacing"
+                android:clickable="true"
+                android:focusable="true"
+                android:minHeight="148dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/nft_recycler_view"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:paddingBottom="8dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1.0"
+                            android:orientation="vertical"
+                            android:paddingTop="8dp">
+
+                            <TextView
+                                android:id="@+id/fc_profile_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/robotomono_bold"
+                                android:textColor="@color/black"
+                                android:layout_marginRight="16dp"
+                                android:textSize="26sp"
+                                tools:text="namand.lens" />
+
+                            <TextView
+                                android:id="@+id/fc_profile_subtitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/robotomono_medium"
+                                android:maxLines="2"
+                                android:text="Joined on Aug 2019" />
+
+                            <TextView
+                                android:id="@+id/fc_profile_subtitle2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/robotomono_medium"
+                                android:maxLines="2"
+                                android:text="Joined on Aug 2019" />
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/fc_profile_image"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="8dp"
+                            app:backgroundTintMode="add" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="196dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="16dp"
-                android:clipChildren="false"
-                android:clipToPadding="false" />
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="#FE8981"
+                        android:padding="10dp"
+                        android:id="@+id/ivXmtp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_close"
+                        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                        app:strokeColor="@android:color/transparent"
+                        app:strokeWidth="1dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="XMTP not enabled"
+                        android:id="@+id/tv_xmtp"
+                        android:layout_marginStart="16dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/robotomono_semibold"
+                        android:textColor="@color/black"/>
+
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp"
+                android:layout_margin="@dimen/mtrl_card_spacing">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:fontFamily="@font/robotomono_bold"
+                        android:text="POAPs"
+                        android:id="@+id/tv_poaps"
+                        android:textColor="@color/black"
+                        android:textSize="28sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="16dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/robotomono_medium"
+                            android:id="@+id/tv_num_cities"
+                            android:drawablePadding="8dp"
+                            android:drawableStart="@drawable/baseline_location_city_24"
+                            android:textSize="18sp"
+                            android:scaleType="centerInside"
+                            android:text="2 cities"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:drawablePadding="8dp"
+                            android:fontFamily="@font/robotomono_medium"
+                            android:id="@+id/tv_num_events"
+                            android:drawableStart="@drawable/baseline_event_24"
+                            android:scaleType="centerInside"
+                            android:textSize="18sp"
+                            android:text="4 events"
+                            android:textColor="@color/black" />
+
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/poap_cities_recyclerview"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="16dp"/>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/poap_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="196dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginVertical="16dp"
+                        android:clipChildren="false"
+                        android:clipToPadding="false" />
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="View POAP history"
+                        android:textColor="@color/black"
+                        android:id="@+id/btnConnect"
+                        android:backgroundTint="#FFD7E4"
+                        android:paddingVertical="8dp"
+                        android:layout_marginBottom="20dp"
+                        android:visibility="gone"
+                        android:fontFamily="@font/robotomono_bold"
+                        android:layout_marginHorizontal="40dp"
+                        android:stateListAnimator="@null"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:fontFamily="@font/robotomono_bold"
+                        android:text="NFTs"
+                        android:id="@+id/tv_nfts"
+                        android:textColor="@color/black"
+                        android:textSize="28sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/nft_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="196dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginVertical="16dp"
+                        android:clipChildren="false"
+                        android:clipToPadding="false" />
+
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom"
-        android:fitsSystemWindows="true"
-        app:fabAlignmentMode="center"
-        app:fabAnchorMode="cradle"
-        app:fabCradleVerticalOffset="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:subtitle="hello"
-        app:title="Instant Connect" />
+    <!--    <com.google.android.material.bottomappbar.BottomAppBar-->
+    <!--        android:id="@+id/bar"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="60dp"-->
+    <!--        android:layout_gravity="bottom"-->
+    <!--        android:fitsSystemWindows="true"-->
+    <!--        app:fabAlignmentMode="center"-->
+    <!--        app:fabAnchorMode="cradle"-->
+    <!--        app:fabCradleVerticalOffset="0dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:subtitle="hello"-->
+    <!--        app:title="Instant Connect" />-->
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="24dp"
         android:text="Nearby users"
-        app:icon="@drawable/travel_explore"
-        app:layout_anchor="@+id/bar" />
+        app:icon="@drawable/travel_explore" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

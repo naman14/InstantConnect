@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
         startActivity(Intent(this, ProfileActivity::class.java).apply {
-            putExtra("address", "0x16b1025cD1A83141bf93E47dBC316f34f27f2e76")
+            putExtra("address", "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045")
         })
 
 
