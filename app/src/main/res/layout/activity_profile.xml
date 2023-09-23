@@ -41,31 +41,192 @@
                 android:id="@+id/tvAlias"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="naman"
-                android:gravity="center_horizontal"
                 android:layout_gravity="center_horizontal"
-                android:drawableEnd="@drawable/baseline_edit_24"
                 android:drawableStart="@drawable/baseline_person_outline_24"
+                android:drawableEnd="@drawable/baseline_edit_24"
                 android:drawablePadding="12dp"
                 android:drawableTint="@color/black"
                 android:fontFamily="@font/robotomono_semibold"
+                android:gravity="center_horizontal"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="4dp"
+                android:text="naman"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/tvAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_gravity="center"
-                android:id="@+id/tvAddress"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/robotomono_regular"
                 android:text="0x16b1025cD1A83141bf93E47dBC316f34f27f2e76"
-                android:layout_marginBottom="16dp"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/insights_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardBackgroundColor="@color/crane_theme_light_inverseOnSurface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:orientation="vertical"
+                    android:paddingBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/robotomono_bold"
+                        android:gravity="center_horizontal"
+                        android:text="Insights"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tv_insights_subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/robotomono_regular"
+                        android:gravity="center_horizontal"
+                        android:text="You and 0x153df"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_insight_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:drawableStart="@drawable/baseline_done_24"
+                        android:drawablePadding="12dp"
+                        android:drawableTint="@color/fortnightly_theme_dark_surfaceTintColor"
+                        android:fontFamily="@font/robotomono_medium"
+                        android:textSize="16sp"
+                        tools:text="5 common events" />
+
+                    <TextView
+                        android:id="@+id/tv_insight_1_subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotomono_regular"
+                        android:paddingStart="38dp"
+                        android:textSize="14sp"
+                        tools:text="ETH Denver, ETH New York" />
+
+                    <TextView
+                        android:id="@+id/tv_insight_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:drawableStart="@drawable/baseline_done_24"
+                        android:drawablePadding="12dp"
+                        android:drawableTint="@color/fortnightly_theme_dark_surfaceTintColor"
+                        android:fontFamily="@font/robotomono_medium"
+                        android:textSize="16sp"
+                        tools:text="5 common events" />
+
+                    <TextView
+                        android:id="@+id/tv_insight_2_subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotomono_regular"
+                        android:paddingStart="38dp"
+                        android:textSize="14sp"
+                        tools:text="ETH Denver, ETH New York" />
+
+                    <TextView
+                        android:id="@+id/tv_insight_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:drawableStart="@drawable/baseline_done_24"
+                        android:drawablePadding="12dp"
+                        android:drawableTint="@color/fortnightly_theme_dark_surfaceTintColor"
+                        android:fontFamily="@font/robotomono_medium"
+                        android:textSize="16sp"
+                        tools:text="5 common events" />
+
+                    <TextView
+                        android:id="@+id/tv_insight_4_subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotomono_regular"
+                        android:paddingStart="38dp"
+                        android:textSize="14sp"
+                        tools:text="ETH Denver, ETH New York" />
+
+
+                    <TextView
+                        android:id="@+id/tv_insight_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:drawableStart="@drawable/baseline_done_24"
+                        android:drawablePadding="12dp"
+                        android:drawableTint="@color/fortnightly_theme_dark_surfaceTintColor"
+                        android:fontFamily="@font/robotomono_medium"
+                        android:textSize="16sp"
+                        tools:text="5 common events" />
+
+                    <TextView
+                        android:id="@+id/tv_insight_3_subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotomono_regular"
+                        android:paddingStart="38dp"
+                        android:textSize="14sp"
+                        tools:text="ETH Denver, ETH New York" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_chat_xmtp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:backgroundTint="#FFD7E4"
+                        android:fontFamily="@font/robotomono_bold"
+                        android:paddingVertical="8dp"
+                        android:stateListAnimator="@null"
+                        android:text="Message now with XMTP"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_follow_lens"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="40dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp"
+                        android:backgroundTint="#FFD7E4"
+                        android:fontFamily="@font/robotomono_bold"
+                        android:paddingVertical="8dp"
+                        android:stateListAnimator="@null"
+                        android:text="Follow on Lens"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -98,9 +259,9 @@
                                 android:id="@+id/lens_profile_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginRight="16dp"
                                 android:fontFamily="@font/robotomono_bold"
                                 android:textColor="@color/black"
-                                android:layout_marginRight="16dp"
                                 android:textSize="26sp"
                                 tools:text="namand.lens" />
 
@@ -112,7 +273,7 @@
                                 android:ellipsize="end"
                                 android:fontFamily="@font/robotomono_medium"
                                 android:maxLines="2"
-                                android:text="Joined on Aug 2019" />
+                                tools:text="Joined on Aug 2019" />
 
                             <TextView
                                 android:id="@+id/lens_profile_subtitle2"
@@ -122,7 +283,7 @@
                                 android:ellipsize="end"
                                 android:fontFamily="@font/robotomono_medium"
                                 android:maxLines="2"
-                                android:text="Joined on Aug 2019" />
+                                tools:text="Joined on Aug 2019" />
                         </LinearLayout>
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -169,9 +330,9 @@
                                 android:id="@+id/fc_profile_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginRight="16dp"
                                 android:fontFamily="@font/robotomono_bold"
                                 android:textColor="@color/black"
-                                android:layout_marginRight="16dp"
                                 android:textSize="26sp"
                                 tools:text="namand.lens" />
 
@@ -183,7 +344,7 @@
                                 android:ellipsize="end"
                                 android:fontFamily="@font/robotomono_medium"
                                 android:maxLines="2"
-                                android:text="Joined on Aug 2019" />
+                                tools:text="Joined on Aug 2019" />
 
                             <TextView
                                 android:id="@+id/fc_profile_subtitle2"
@@ -193,7 +354,7 @@
                                 android:ellipsize="end"
                                 android:fontFamily="@font/robotomono_medium"
                                 android:maxLines="2"
-                                android:text="Joined on Aug 2019" />
+                                tools:text="Joined on Aug 2019" />
                         </LinearLayout>
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -218,32 +379,59 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center"
-                    android:gravity="center_vertical">
+                    android:orientation="vertical">
 
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="#FE8981"
-                        android:padding="10dp"
-                        android:id="@+id/ivXmtp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_close"
-                        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-                        app:strokeColor="@android:color/transparent"
-                        app:strokeWidth="1dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="XMTP not enabled"
-                        android:id="@+id/tv_xmtp"
-                        android:layout_marginStart="16dp"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/robotomono_semibold"
-                        android:textColor="@color/black"/>
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/ivXmtp"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="#FE8981"
+                            android:padding="10dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_close"
+                            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                            app:strokeColor="@android:color/transparent"
+                            app:strokeWidth="1dp" />
+
+                        <TextView
+                            android:id="@+id/tv_xmtp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/robotomono_semibold"
+                            android:text="XMTP not enabled"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_chat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="40dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:backgroundTint="#FFD7E4"
+                        android:fontFamily="@font/robotomono_bold"
+                        android:paddingVertical="8dp"
+                        android:stateListAnimator="@null"
+                        android:text="Message now"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                 </LinearLayout>
 
@@ -253,8 +441,8 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="12dp"
-                android:layout_margin="@dimen/mtrl_card_spacing">
+                android:layout_margin="@dimen/mtrl_card_spacing"
+                android:paddingBottom="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -262,58 +450,57 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_poaps"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:fontFamily="@font/robotomono_bold"
                         android:text="POAPs"
-                        android:id="@+id/tv_poaps"
                         android:textColor="@color/black"
                         android:textSize="28sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:layout_marginStart="16dp"
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_num_cities"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/robotomono_medium"
-                            android:id="@+id/tv_num_cities"
-                            android:drawablePadding="8dp"
                             android:drawableStart="@drawable/baseline_location_city_24"
-                            android:textSize="18sp"
+                            android:drawablePadding="8dp"
+                            android:fontFamily="@font/robotomono_medium"
                             android:scaleType="centerInside"
                             android:text="2 cities"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
 
                         <TextView
+                            android:id="@+id/tv_num_events"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
+                            android:drawableStart="@drawable/baseline_event_24"
                             android:drawablePadding="8dp"
                             android:fontFamily="@font/robotomono_medium"
-                            android:id="@+id/tv_num_events"
-                            android:drawableStart="@drawable/baseline_event_24"
                             android:scaleType="centerInside"
-                            android:textSize="18sp"
                             android:text="4 events"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
 
 
                     </LinearLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        xmlns:android="http://schemas.android.com/apk/res/android"
+                    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
                         android:id="@+id/poap_cities_recyclerview"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_margin="16dp"/>
+                        android:layout_margin="16dp" />
 
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -327,22 +514,22 @@
 
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnConnect"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="40dp"
+                        android:layout_marginBottom="20dp"
+                        android:backgroundTint="#FFD7E4"
+                        android:fontFamily="@font/robotomono_bold"
+                        android:paddingVertical="8dp"
+                        android:stateListAnimator="@null"
                         android:text="View POAP history"
                         android:textColor="@color/black"
-                        android:id="@+id/btnConnect"
-                        android:backgroundTint="#FFD7E4"
-                        android:paddingVertical="8dp"
-                        android:layout_marginBottom="20dp"
-                        android:visibility="gone"
-                        android:fontFamily="@font/robotomono_bold"
-                        android:layout_marginHorizontal="40dp"
-                        android:stateListAnimator="@null"
                         android:textSize="18sp"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                 </LinearLayout>
 
@@ -351,8 +538,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                >
+                android:layout_margin="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -360,12 +546,12 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_nfts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:fontFamily="@font/robotomono_bold"
                         android:text="NFTs"
-                        android:id="@+id/tv_nfts"
                         android:textColor="@color/black"
                         android:textSize="28sp" />
 

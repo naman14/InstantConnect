@@ -15,4 +15,9 @@ object AirStack {
         val response = apiClient.query(GetAllSocialsAndNftsQuery(address = address, identity = address)).execute()
         return response.data
     }
+
+    suspend fun getCommonPoaps(address: String, address2: String): GetAllSocialsAndNftsQuery.Data? {
+        val response = apiClient.query(GetAllSocialsAndNftsQuery(address = address, identity = address)).execute()
+        return response.data
+    }
 }

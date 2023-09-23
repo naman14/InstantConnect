@@ -19,7 +19,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        PreferenceManager.getDefaultSharedPreferences(this).edit().putString("address", "0x16b1025cD1A83141bf93E47dBC316f34f27f2e76").apply()
+
+        var address = "0x16b1025cD1A83141bf93E47dBC316f34f27f2e76"
+//        address = "0xb9b8ef61b7851276b0239757a039d54a23804cbb"
+
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putString("address", address).apply()
 
 //        val connectedWalletAddress = PreferenceManager.getDefaultSharedPreferences(this).getString("address", "") ?: ""
 //        if (!connectedWalletAddress.equals("")) {
@@ -31,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
         startActivity(Intent(this, ProfileActivity::class.java).apply {
-            putExtra("address", "0x16b1025cD1A83141bf93E47dBC316f34f27f2e76")
+            putExtra("address", "0xb9b8ef61b7851276b0239757a039d54a23804cbb")
         })
 
 

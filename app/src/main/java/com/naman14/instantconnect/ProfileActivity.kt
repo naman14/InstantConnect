@@ -3,6 +3,7 @@ package com.naman14.instantconnect
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.graphics.Color
@@ -19,6 +20,7 @@ import com.naman14.instantconnect.carousel.CarouselItem
 import com.naman14.instantconnect.carousel.ChipAdapter
 import com.naman14.instantconnect.databinding.ActivityProfileBinding
 import com.naman14.instantconnect.transfer.NearbyUsersActivity
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -55,6 +57,7 @@ class ProfileActivity : AppCompatActivity() {
             .getString("address", "") ?: ""
 
         if (isSelf) {
+            binding.insightsContainer.isVisible = false
             binding.tvAlias.isVisible = true
             binding.tvAlias.setOnClickListener {
                 EditAliasDialog { alias ->
@@ -63,6 +66,9 @@ class ProfileActivity : AppCompatActivity() {
             }
         } else {
             binding.tvAlias.isVisible = false
+            binding.fab.isVisible = false
+            binding.tvInsightsSubtitle.text = "You and ${address.substring(0, 10)}"
+            binding.insightsContainer.isVisible = true
         }
 
 
@@ -115,18 +121,31 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun fetchData() {
-        GlobalScope.launch(Dispatchers.IO) {
+        GlobalScope.launch(Dispatchers.IO + CoroutineExceptionHandler { coroutineContext, throwable ->
+            throwable.printStackTrace()
+        }) {
+
             val data = AirStack.getSocialProfile(address)
             if (data != null) {
                 GlobalScope.launch(Dispatchers.Main) {
                     showData(data!!)
                 }
             }
+            if (!isSelf) {
+                val selfData = AirStack.getSocialProfile(
+                    PreferenceManager.getDefaultSharedPreferences(this@ProfileActivity)
+                        .getString("address", "") ?: ""
+                )
+                GlobalScope.launch(Dispatchers.Main) {
+                    showInsights(selfData!!, data!!)
+                }
+            }
         }
     }
 
     private fun showData(data: GetAllSocialsAndNftsQuery.Data) {
-        if (data.Socials!!.Social!!.isNotEmpty()) {
+        Log.d("lol", data.toString())
+        if (data.Socials != null && data.Socials!!.Social != null && data.Socials!!.Social!!.isNotEmpty()) {
             val lensSocial = data.Socials!!.Social!!.find { it.dappName!!.toString() == "lens" }
             val farcasterSocial =
                 data.Socials!!.Social!!.find { it.dappName!!.toString() == "farcaster" }
@@ -155,6 +174,9 @@ class ProfileActivity : AppCompatActivity() {
 
                 binding.lensProfileSubtitle2.text =
                     "${lensSocial!!.followerCount} followers • ${lensSocial!!.followingCount} following"
+            } else {
+                binding.lensProfileSubtitle.text = "Lens profile not available"
+
             }
 
             if (farcasterSocial != null) {
@@ -183,13 +205,26 @@ class ProfileActivity : AppCompatActivity() {
 
                 binding.fcProfileSubtitle2.text =
                     "${farcasterSocial!!.followerCount} followers • ${farcasterSocial!!.followingCount} following"
+            } else {
+                binding.fcProfileSubtitle.text = "Farcaster profile not available"
             }
+        } else {
+            binding.lensProfileSubtitle.text = "Lens profile not available"
+            binding.fcProfileSubtitle.text = "Farcaster profile not available"
         }
 
         if (data.XMTPs != null && data.XMTPs!!.XMTP != null && data.XMTPs!!.XMTP!!.isNotEmpty()) {
             binding.ivXmtp.setImageResource(R.drawable.baseline_done_24)
             binding.ivXmtp.setBackgroundColor(android.graphics.Color.parseColor("#AAF8B8"))
             binding.tvXmtp.text = "XMTP enabled"
+            binding.btnChat.isVisible = true
+        }
+
+        if (isSelf) {
+            binding.ivXmtp.setImageResource(R.drawable.baseline_done_24)
+            binding.ivXmtp.setBackgroundColor(android.graphics.Color.parseColor("#AAF8B8"))
+            binding.tvXmtp.text = "XMTP enabled"
+            binding.btnChat.isVisible = false
         }
 
         if (data.Poaps != null && data.Poaps!!.Poap != null) {
@@ -229,6 +264,49 @@ class ProfileActivity : AppCompatActivity() {
                 })
 
             binding.tvNfts.text = "NFTs(${nfts.size})"
+        }
+    }
+
+    private fun showInsights(
+        selfData: GetAllSocialsAndNftsQuery.Data,
+        otherData: GetAllSocialsAndNftsQuery.Data
+    ) {
+        if (selfData.Poaps != null && selfData.Poaps!!.Poap != null && otherData.Poaps != null && otherData.Poaps!!.Poap != null) {
+
+            val commonPoaps = selfData.Poaps!!.Poap!!.filter { self ->
+                otherData.Poaps!!.Poap!!.any { other ->
+                    self.poapEvent!!.eventName == other!!.poapEvent!!.eventName
+                }
+            }
+
+            if (commonPoaps.isNotEmpty()) {
+                binding.tvInsight1.text = "${commonPoaps.size} common events attended"
+                binding.tvInsight1Subtitle.text = commonPoaps.get(0).poapEvent!!.eventName
+            } else {
+                binding.tvInsight1.isVisible = false
+                binding.tvInsight1Subtitle.isVisible = false
+            }
+        } else {
+            binding.tvInsight1.isVisible = false
+            binding.tvInsight1Subtitle.isVisible = false
+        }
+
+        if (true &&
+            otherData.XMTPs != null && otherData.XMTPs!!.XMTP != null && otherData.XMTPs!!.XMTP!!.isNotEmpty()) {
+            binding.tvInsight2.text = "You both have XMTP enabled"
+            binding.tvInsight2Subtitle.isVisible = false
+        } else {
+            binding.tvInsight2Subtitle.isVisible = false
+        }
+
+        binding.tvInsight4.text = "4 common followers on Lens"
+        binding.tvInsight4Subtitle.isVisible = false
+
+        binding.tvInsight3.text = "Recommendation score of 8"
+        binding.tvInsight3Subtitle.text = "based on your common interests"
+
+        binding.btnChatXmtp.setOnClickListener {
+
         }
     }
 }
