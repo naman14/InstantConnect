@@ -34,6 +34,14 @@
                     android:gravity="center"
                     android:hint="Search Address, ENS or Lens profile" />
 
+                <com.google.android.material.search.SearchView
+                    android:id="@+id/search_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Search Address, ENS or Lens profile"
+                    app:layout_anchor="@id/search_bar">
+                </com.google.android.material.search.SearchView>
+
             </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -198,7 +206,7 @@
                         android:fontFamily="@font/robotomono_bold"
                         android:paddingVertical="8dp"
                         android:stateListAnimator="@null"
-                        android:text="Message now with XMTP"
+                        android:text="Message now"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -295,6 +303,24 @@
                             app:backgroundTintMode="add" />
                     </LinearLayout>
 
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_follow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="40dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp"
+                        android:backgroundTint="#FFD7E4"
+                        android:fontFamily="@font/robotomono_bold"
+                        android:paddingVertical="8dp"
+                        android:stateListAnimator="@null"
+                        android:visibility="gone"
+                        android:text="Follow on Lens"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>

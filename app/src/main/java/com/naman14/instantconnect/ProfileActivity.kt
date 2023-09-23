@@ -1,12 +1,12 @@
 package com.naman14.instantconnect
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.graphics.Color
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +24,6 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.security.AccessController.getContext
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -116,6 +115,17 @@ class ProfileActivity : AppCompatActivity() {
         poapCitiesAdapter = ChipAdapter()
         binding.poapCitiesRecyclerview.adapter = poapCitiesAdapter
 
+        binding.searchView.setupWithSearchBar(binding.catSearchBar)
+        binding.searchView.editText.setOnEditorActionListener { textView, i, keyEvent ->
+            val text = binding.searchView.text.toString()
+            binding.catSearchBar.setText(text)
+            binding.searchView.isVisible = false
+            startActivity(Intent(this, ProfileActivity::class.java).apply {
+                putExtra("address", text)
+            })
+            true
+        }
+
         fetchData()
 
     }
@@ -172,6 +182,13 @@ class ProfileActivity : AppCompatActivity() {
                     )
                 } ${cal.get(Calendar.YEAR)}"
 
+                if (!isSelf) {
+                    binding.btnFollow.isVisible = true
+                    binding.btnFollow.setOnClickListener {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://lenster.xyz/u/${lensSocial.profileName!!.replace(".lens", "")}")))
+                    }
+                } else {
+                }
                 binding.lensProfileSubtitle2.text =
                     "${lensSocial!!.followerCount} followers • ${lensSocial!!.followingCount} following"
             } else {
@@ -299,8 +316,7 @@ class ProfileActivity : AppCompatActivity() {
             binding.tvInsight2Subtitle.isVisible = false
         }
 
-        binding.tvInsight4.text = "4 common followers on Lens"
-        binding.tvInsight4Subtitle.isVisible = false
+
 
         binding.tvInsight3.text = "Recommendation score of 8"
         binding.tvInsight3Subtitle.text = "based on your common interests"
@@ -308,5 +324,24 @@ class ProfileActivity : AppCompatActivity() {
         binding.btnChatXmtp.setOnClickListener {
 
         }
+
+        if ( otherData.Socials != null && otherData.Socials!!.Social != null ) {
+            val lensSocial = otherData.Socials!!.Social!!.find { it.dappName!!.toString() == "lens" }
+            if (lensSocial != null) {
+                binding.btnFollowLens.setOnClickListener {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://lenster.xyz/u/${lensSocial!!.profileName!!.replace(".lens", "")}")))
+                }
+
+                binding.tvInsight4.text = "1 common followers on Lens"
+                binding.tvInsight4Subtitle.isVisible = false
+            } else {
+                binding.btnFollowLens.isVisible = false
+            }
+
+        } else {
+            binding.btnFollowLens.isVisible = false
+            binding.tvInsight4.isVisible = false
+        }
+
     }
 }
