@@ -350,12 +350,13 @@ class ProfileActivity : AppCompatActivity() {
 
         if ( otherData.Socials != null && otherData.Socials!!.Social != null ) {
             val lensSocial = otherData.Socials!!.Social!!.find { it.dappName!!.toString() == "lens" }
+            val commonFollowers = otherData.Socials!!.Social!!.find { it.dappName!!.toString() == ".lens" }
             if (lensSocial != null) {
                 binding.btnFollowLens.setOnClickListener {
                     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://lenster.xyz/u/${lensSocial!!.profileName!!.replace(".lens", "")}")))
                 }
 
-                binding.tvInsight4.text = "1 common followers on Lens"
+                binding.tvInsight4.text = "${commonFollowers ?: 1} common followers on Lens"
                 binding.tvInsight4Subtitle.isVisible = false
             } else {
                 binding.btnFollowLens.isVisible = false
